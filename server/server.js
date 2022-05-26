@@ -18,6 +18,16 @@ const travelRouter = require('./routes/travelRouter.js');
 app.use('/images',imageRouter);
 app.use('/travel',travelRouter);
 
+app.use((err, req, res, next) => {
+  let errorObj;
+   Object.assign(errorObj,  {
+    log: 'Express error handler caught unknown middleware error',
+    status: 400,
+    message: { err: 'An error occurred' }, 
+  })
+  console.log(errorObj.log)
+  res.status(errorObj.status).send(errorObj.message.json())
+})
 
 const PORT = 3000;
 

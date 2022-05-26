@@ -28,7 +28,11 @@ export default class Wish extends Component {
             headers: {'Content-Type': 'application/json'},
             body: data
         })
-        .then(this.props.data.changeStatus("Updated."))
+        .then(res => {
+            console.log(res);
+            if (res.status === 500) this.props.data.changeStatus("Error, can not update entry")
+            else this.props.data.changeStatus("Updated.")
+        })
     }
 
     inputData = (val)=> {

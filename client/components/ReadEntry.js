@@ -23,19 +23,22 @@ export default class Wish extends Component {
         // .json() parses the response body data as JSON and returns a JS Object/Array
         .then(res => res.json())
         .then(res => {
-            this.setState({
-                firstName: res[0].firstName,
-                location: res[0].location,
-                date: res[0].date,
-                keySites: res[0].keySites
-            })
-
-            let sentence = `Found -- Visited ` 
-            for (let i = 0; i < this.state.keySites.length; i++) { 
-                if (this.state.keySites[i] != "") sentence = sentence.concat(`${this.state.keySites[i]} `)
+            if (res.err) this.props.data.changeStatus(res.err)
+            else {
+                this.setState({
+                    firstName: res[0].firstName,
+                    location: res[0].location,
+                    date: res[0].date,
+                    keySites: res[0].keySites
+                })
+    
+                let sentence = `Found -- Visited ` 
+                for (let i = 0; i < this.state.keySites.length; i++) { 
+                    if (this.state.keySites[i] != "") sentence = sentence.concat(`${this.state.keySites[i]} `)
+                }
+                sentence = sentence.concat(`in ${this.state.location} on ${this.state.date} by ${this.state.firstName}.`)
+                this.props.data.changeStatus(sentence);
             }
-            sentence = sentence.concat(`in ${this.state.location} on ${this.state.date} by ${this.state.firstName}.`)
-            this.props.data.changeStatus(sentence);
         })
     };
 

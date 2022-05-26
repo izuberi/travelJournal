@@ -19,7 +19,11 @@ export default class Wish extends Component {
     deleteUserClick = () => {
         const url = `http://localhost:3000/travel/${this.state.data}`
         fetch(url, {method: "DELETE"})
-        .then(this.props.data.changeStatus("Deleted."))
+        .then(res => {
+            console.log(res);
+            if (res.status === 500) this.props.data.changeStatus("Error, can not delete entry")
+            else this.props.data.changeStatus("Deleted.")
+        })
     }
 
     render() {

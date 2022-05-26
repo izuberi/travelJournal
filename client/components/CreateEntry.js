@@ -30,7 +30,11 @@ export default class Wish extends Component {
             headers: {'Content-Type': 'application/json'},
             body: data
         })
-        .then(this.props.data.changeStatus("Created."))
+        .then(res => res.json())
+        .then(res => {
+            if (res.err) this.props.data.changeStatus(res.err)
+            else this.props.data.changeStatus("Created.")
+        })
     }
 
     inputfirstName = (val)=> {
