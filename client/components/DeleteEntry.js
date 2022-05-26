@@ -21,7 +21,7 @@ export default class Wish extends Component {
         fetch(url, {method: "DELETE"})
         .then(res => {
             console.log(res);
-            if (res.status === 500) this.props.data.changeStatus("Error, can not delete entry")
+            if (res.status === 500) this.props.data.changeStatus("Error, Invalid Entry")
             else this.props.data.changeStatus("Deleted.")
         })
     }

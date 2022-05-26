@@ -23,7 +23,7 @@ export default class Wish extends Component {
         // .json() parses the response body data as JSON and returns a JS Object/Array
         .then(res => res.json())
         .then(res => {
-            if (res.err) this.props.data.changeStatus(res.err)
+            if (res.err) this.props.data.changeStatus("Error, Invalid Entry")
             else {
                 this.setState({
                     firstName: res[0].firstName,
@@ -32,11 +32,11 @@ export default class Wish extends Component {
                     keySites: res[0].keySites
                 })
     
-                let sentence = `Found -- Visited ` 
+                let sentence = `Found -- ${this.state.location}: ` 
                 for (let i = 0; i < this.state.keySites.length; i++) { 
-                    if (this.state.keySites[i] != "") sentence = sentence.concat(`${this.state.keySites[i]} `)
+                    if (this.state.keySites[i] != "") sentence = sentence.concat(`"${this.state.keySites[i]}" `)
                 }
-                sentence = sentence.concat(`in ${this.state.location} on ${this.state.date} by ${this.state.firstName}.`)
+                sentence = sentence.concat(`on ${this.state.date} by ${this.state.firstName}.`)
                 this.props.data.changeStatus(sentence);
             }
         })

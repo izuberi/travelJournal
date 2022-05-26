@@ -32,7 +32,7 @@ export default class Wish extends Component {
         })
         .then(res => res.json())
         .then(res => {
-            if (res.err) this.props.data.changeStatus(res.err)
+            if (res.err) this.props.data.changeStatus("Error, Invalid Entry")
             else this.props.data.changeStatus("Created.")
         })
     }
@@ -83,7 +83,7 @@ export default class Wish extends Component {
         return (
             <div className="CreateEntry">
                 <h1>Create Entry</h1>
-                <h2>First Name:</h2>
+                <h2>Name:</h2>
                 <input id='input' type='text' onChange={this.inputfirstName}/>
                 <h2>Location: </h2>
                 <input id='input' type='text' onChange={this.inputlocation}/>

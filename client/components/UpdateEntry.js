@@ -30,7 +30,7 @@ export default class Wish extends Component {
         })
         .then(res => {
             console.log(res);
-            if (res.status === 500) this.props.data.changeStatus("Error, can not update entry")
+            if (res.status === 500) this.props.data.changeStatus("Error, Invalid Entry")
             else this.props.data.changeStatus("Updated.")
         })
     }
