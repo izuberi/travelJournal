@@ -1,0 +1,5 @@
+{
+    // take react/JSX code and transpile that
+    // take modern JS code and transpile that 
+    "presets" : ["@babel/preset-react","@babel/preset-env"]
+}
