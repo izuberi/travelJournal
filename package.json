@@ -7,7 +7,8 @@
   "scripts": {
     "start": "webpack-dev-server --open",
     "build": "webpack --config webpack.config.js --mode production",
-    "dev": "nodemon app.js",
+    "server-only": "nodemon ./server/server.js",
+    "dev": "concurrently \"webpack-dev-server --open --hot\" \"nodemon ./server/server.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -18,6 +19,7 @@
     "@babel/preset-react": "^7.17.12",
     "axios": "^0.27.2",
     "babel-loader": "^8.2.5",
+    "concurrently": "^7.2.1",
     "cors": "^2.8.5",
     "css-loader": "^6.7.1",
     "express": "^4.18.1",
